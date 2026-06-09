@@ -16,6 +16,7 @@ Mentor-driven. Deep understanding over breadth. WHY before HOW.
 | What | Where |
 |------|-------|
 | Master journey log (background, goals, roadmap, day-by-day record) | [systems_journey.md](systems_journey.md) |
+| Editor & toolchain setup | [tooling.md](tooling.md) |
 | Current day | [Day06/](Day06/README.md) |
 
 ## Roadmap
