@@ -48,18 +48,26 @@ static int   tracker_count = 0;   /* one past the highest slot ever used */
 void *my_alloc(size_t size) {
     /* TODO: your code here */
     (void)size;
-    int i, flag;
+    int i, flag = 0;
+
+    if (flag == 0 && tracker_count == 100)
+	    return NULL;
+
     for (i = flag = 0; i < tracker_count; i++) {
         if (tracker[i].used == 0) {
             flag = 1;
+	    printf("reused slot ");
             break;
         }
     }
     tracker[i].ptr = malloc(size);
     tracker[i].size = size;
     tracker[i].used = 1;
-    if (flag == 0)
+    if (flag == 0) {
+	printf("new slot ");
 	tracker_count++;
+    }
+    printf("%d\n", i);
 
     return tracker[i].ptr;
 }
@@ -79,9 +87,11 @@ void my_free(void *p) {
     for (i = 0; i < tracker_count; i++) {
 	if (tracker[i].ptr == p) {
 		free(p);
+		printf("freed slot %d\n", i);
 		tracker[i].ptr = NULL;
 		tracker[i].size = 0;
 		tracker[i].used = 0;
+		break;
 	}
     }
 

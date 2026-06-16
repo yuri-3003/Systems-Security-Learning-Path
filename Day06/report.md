@@ -19,8 +19,9 @@ So total 32 bytes but I have a questiosn why do we need (void *)a instead of a w
 And also imagine I defined two int a, b; and if we track those address then gap between those two addresses might be 32?
 ## Task 4 — gdb observations
 - `sizeof(Node)` = `16 bytes`
-- node addresses close / far apart: `______`
+ node addresses close / far apart: `0x21`
 - anything else you noticed:
+    actually I can't understand x/2xg and when I ran this I see two 16 bytes and I can't understand those values 
 
 ## Reflection answers
 1. Why doesn't `free()` need the size?
@@ -44,3 +45,5 @@ Here's my think. When we store the variable, we use some kind of header structur
 
 ## Anything that surprised me
 
+## Here's what I think.
+    So when we get the normal address of the variable we just get address and when we use malloc, those are returned the value address but ahead of that address there's header for that right?
