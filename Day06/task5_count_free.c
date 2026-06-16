@@ -57,7 +57,7 @@ int count_nodes(Node *head) {
 	cnt++;
 	temp = temp->next;
     }
-    return 0;
+    return cnt;
 }
 
 /* Free every node in the list.

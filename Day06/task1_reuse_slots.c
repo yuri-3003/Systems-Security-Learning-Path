@@ -50,10 +50,10 @@ void *my_alloc(size_t size) {
     (void)size;
     int i, flag;
     for (i = flag = 0; i < tracker_count; i++) {
-	if (tracker[i].used == 0) {
-		flag = 1;
-		break;
-	}
+        if (tracker[i].used == 0) {
+            flag = 1;
+            break;
+        }
     }
     tracker[i].ptr = malloc(size);
     tracker[i].size = size;
