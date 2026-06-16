@@ -17,7 +17,8 @@ Mentor-driven. Deep understanding over breadth. WHY before HOW.
 |------|-------|
 | Master journey log (background, goals, roadmap, day-by-day record) | [systems_journey.md](systems_journey.md) |
 | Editor & toolchain setup | [tooling.md](tooling.md) |
-| Current day | [Day06/](Day06/README.md) |
+| Current day | [Day07/](Day07/README.md) |
+| Past days | [Day06/](Day06/README.md) (done — see its [review](Day06/review.md)) |
 
 ## Roadmap
 - **Phase 1** — Linux · C · Memory · Debugging  ← *we are here*

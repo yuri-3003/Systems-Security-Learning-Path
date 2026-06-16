@@ -263,26 +263,54 @@ A memory manager must keep track of allocated blocks.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+DAY 6
+
+Topics:
+- allocator inefficiencies / freed-slot reuse
+- allocator metadata (the embedded chunk header)
+- singly linked lists
+- debugging pointers through the heap in gdb
+
+Built:
+- memory tracker that marks freed slots and reuses them
+- singly linked list (push_front, print_list, count_nodes, free_list)
+
+Learned:
+- free() needs no size: the size lives in a header just BEFORE the
+  returned pointer. malloc returns the PAYLOAD address, not the header.
+- saw the glibc chunk header in gdb (size word 0x21 = 32 | in-use bit),
+  which explains the 32-byte gap between two small allocations
+- free_list must save ->next BEFORE free(node), else use-after-free
+- &p (address of the pointer variable, on the stack) vs p (the heap
+  payload address) vs *p (the value) vs the chunk size are four
+  different things
+
+Corrections absorbed:
+- earlier believed malloc returns the header address; it returns the
+  payload (header sits just before it)
+- sizes are size_t (unsigned, word-width), not int
+
+Important realization:
+A real allocator's bookkeeping lives INSIDE the memory it manages
+(an inline header), not in a separate table.
+
+(Code, gdb walkthrough, mentor review: Learning Path/Day06/)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 CURRENT DAY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Next planned day is DAY 6.
+Next planned day is DAY 7.
 
-DAY 6 goals:
+DAY 7 goals:
 
-- understand allocator inefficiencies
-- reuse freed slots
-- understand metadata
-- build linked list manually
-- understand why linked structures are important in systems programming
+- doubly linked lists (prev + next)
+- O(1) removal of an arbitrary node given only that node
+- how the Linux kernel really does lists (intrusive list_head + container_of)
+- traverse a list forwards AND backwards in gdb
 
-Planned tasks:
-
-1. Improve memory tracker to reuse freed slots
-2. Learn allocator metadata concepts
-3. Implement linked list manually
-4. Debug linked list with gdb
-5. Implement node counting
+See: Learning Path/Day07/ for the plan, skeletons, and report.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 IMPORTANT
