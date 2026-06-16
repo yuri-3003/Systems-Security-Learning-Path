@@ -48,7 +48,20 @@ static int   tracker_count = 0;   /* one past the highest slot ever used */
 void *my_alloc(size_t size) {
     /* TODO: your code here */
     (void)size;
-    return NULL;
+    int i, flag;
+    for (i = flag = 0; i < tracker_count; i++) {
+	if (tracker[i].used == 0) {
+		flag = 1;
+		break;
+	}
+    }
+    tracker[i].ptr = malloc(size);
+    tracker[i].size = size;
+    tracker[i].used = 1;
+    if (flag == 0)
+	tracker_count++;
+
+    return tracker[i].ptr;
 }
 
 /* Free `p` and mark its tracker slot reusable.
@@ -62,6 +75,16 @@ void *my_alloc(size_t size) {
 void my_free(void *p) {
     /* TODO: your code here */
     (void)p;
+    int i;
+    for (i = 0; i < tracker_count; i++) {
+	if (tracker[i].ptr == p) {
+		free(p);
+		tracker[i].ptr = NULL;
+		tracker[i].size = 0;
+		tracker[i].used = 0;
+	}
+    }
+
 }
 
 int main(void) {

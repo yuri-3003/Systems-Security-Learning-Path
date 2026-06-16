@@ -23,13 +23,13 @@
 #include <stdlib.h>
 
 int main(void) {
-    char *a = malloc(1);   /* ask for ONE byte */
-    char *b = malloc(1);   /* ask for ONE byte */
+    char *a = malloc(5);   /* ask for ONE byte */
+    char *b = malloc(5);   /* ask for ONE byte */
 
     if (!a || !b) { perror("malloc"); return 1; }
 
-    printf("a = %p\n", (void *)a);
-    printf("b = %p\n", (void *)b);
+    printf("a = %p, value=%p\n", (void *)a, a);
+    printf("b = %p, value=%p\n", (void *)b, b);
 
     /* TODO: compute the distance in BYTES between b and a, and print it.
      *
@@ -40,6 +40,8 @@ int main(void) {
      *   long gap = ... ;
      *   printf("gap between two 1-byte allocations = %ld bytes\n", gap);
      */
+    long gap = b - a;
+    printf("gap between two 1-byte allocations = %ld bytes\n", gap);
 
     /* You asked for 1 byte; the gap is much larger. Where did the
      * extra bytes go? Write the number down in report.md. */

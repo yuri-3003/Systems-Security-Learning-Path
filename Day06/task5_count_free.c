@@ -28,19 +28,35 @@ typedef struct Node {
 /* ---- Paste your push_front and print_list from Task 3 ---- */
 Node *push_front(Node *head, int value) {
     /* TODO: copy from Task 3 */
-    (void)value;
+    Node *new_node = malloc(sizeof(Node));
+
+    new_node->value = value;
+    new_node->next = head;
+
+    head = new_node;
     return head;
 }
 void print_list(Node *head) {
     /* TODO: copy from Task 3 */
-    (void)head;
+    Node *temp = head;
+
+    while (temp != NULL) {
+	printf("%d -> ", temp->value);
+	temp = temp->next;
+    }
 }
 
 /* Return how many nodes are in the list. Iterative (no recursion).
  * TODO. */
 int count_nodes(Node *head) {
     /* TODO */
-    (void)head;
+    int cnt = 0;
+    Node *temp = head;
+
+    while (temp != NULL) {
+	cnt++;
+	temp = temp->next;
+    }
     return 0;
 }
 
@@ -57,7 +73,13 @@ int count_nodes(Node *head) {
  */
 void free_list(Node *head) {
     /* TODO */
-    (void)head;
+    Node *temp = head;
+    
+    while (head != NULL) {
+	temp = head->next;
+	free(head);
+	head = temp;
+    }
 }
 
 int main(void) {

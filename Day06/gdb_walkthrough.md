@@ -37,12 +37,12 @@ x/2xg head              # examine 2 giant (8-byte) words at head:
 ```
 
 ## Record your observations (fill in)
-- Address of `head`:          `0x________`
-- Address of `head->next`:    `0x________`
-- Are the node addresses close together or far apart? `______`
+- Address of `head`:          `0x555555559320`
+- Address of `head->next`:    `0x555555559300`
+- Are the node addresses close together or far apart? `Only 32 bytes`
   (Each node is a *separate* malloc. What does that tell you about where heap
   allocations land relative to each other?)
-- `sizeof(Node)` = `______` bytes.
+- `sizeof(Node)` = `16` bytes.
   An `int` (4) + a pointer (8 on 64-bit) = 12, but sizeof is probably **16**.
   Where did the extra 4 bytes go? (Hint: alignment — same reason Task 2's gap was padded.)
 

@@ -40,7 +40,12 @@ typedef struct Node {
  */
 Node *push_front(Node *head, int value) {
     /* TODO */
-    (void)value;
+    Node *new_node = malloc(sizeof(Node));
+
+    new_node->value = value;
+    new_node->next = head;
+    head = new_node;
+    
     return head;
 }
 
@@ -52,6 +57,12 @@ Node *push_front(Node *head, int value) {
 void print_list(Node *head) {
     /* TODO */
     (void)head;
+    Node *temp = head;
+    while (temp != NULL) {
+	printf("%d -> ", temp->value);
+	temp = temp->next;
+    }
+    printf("NULL\n");
 }
 
 int main(void) {
